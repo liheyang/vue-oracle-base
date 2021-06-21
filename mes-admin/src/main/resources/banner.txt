@@ -1,0 +1,21 @@
+
+Application Version: ${ruoyi.version}
+Spring Boot Version: ${spring-boot.version}
+
+MMMMMMMM               MMMMMMMEEEEEEEEEEEEEEEEEEEEEE  SSSSSSSSSSSSSSS
+M:::::::M             M:::::::E::::::::::::::::::::ESS:::::::::::::::S
+M::::::::M           M::::::::E::::::::::::::::::::S:::::SSSSSS::::::S
+M:::::::::M         M:::::::::EE::::::EEEEEEEEE::::S:::::S     SSSSSSS
+M::::::::::M       M::::::::::M E:::::E       EEEEES:::::S
+M:::::::::::M     M:::::::::::M E:::::E            S:::::S
+M:::::::M::::M   M::::M:::::::M E::::::EEEEEEEEEE   S::::SSSS
+M::::::M M::::M M::::M M::::::M E:::::::::::::::E    SS::::::SSSSS
+M::::::M  M::::M::::M  M::::::M E:::::::::::::::E      SSS::::::::SS
+M::::::M   M:::::::M   M::::::M E::::::EEEEEEEEEE         SSSSSS::::S
+M::::::M    M:::::M    M::::::M E:::::E                        S:::::S
+M::::::M     MMMMM     M::::::M E:::::E       EEEEEE           S:::::S
+M::::::M               M::::::EE::::::EEEEEEEE:::::SSSSSSS     S:::::S
+M::::::M               M::::::E::::::::::::::::::::S::::::SSSSSS:::::S
+M::::::M               M::::::E::::::::::::::::::::S:::::::::::::::SS
+MMMMMMMM               MMMMMMMEEEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSS
+

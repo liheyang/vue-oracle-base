@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ablyy.project.system.mapper.SysToDoListMapper">
+
+    <resultMap type="SysToDoList" id="SysToDoListResult">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="type" column="type"/>
+        <result property="status" column="status"/>
+        <result property="contants" column="contants"/>
+        <result property="todoTime" column="todo_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="userRoleId" column="user_role_id"/>
+        <result property="comid" column="comid"/>
+    </resultMap>
+
+    <sql id="selectSysToDoListVo">
+        select id, title, type, status, contants, todo_time, create_by, create_time, update_by, update_time, user_role_id, comid from sys_to_do_list
+    </sql>
+
+    <select id="selectSysToDoListList" parameterType="SysToDoList" resultMap="SysToDoListResult">
+        <include refid="selectSysToDoListVo"/>
+        <where>
+            <if test="title != null  and title != ''">and title = #{title}</if>
+            <if test="type != null  and type != ''">and type = #{type}</if>
+            <if test="status != null  and status != ''">and status = #{status}</if>
+            <if test="contants != null  and contants != ''">and contants = #{contants}</if>
+            <if test="todoTime != null ">and todo_time = #{todoTime}</if>
+            <if test="userRoleId != null ">and user_role_id = #{userRoleId}</if>
+            <if test="comid != null ">and comid = #{comid}</if>
+        </where>
+    </select>
+
+    <select id="selectSysToDoListById" parameterType="Long" resultMap="SysToDoListResult">
+        <include refid="selectSysToDoListVo"/>
+        where id = #{id}
+    </select>
+    <select id="selectToDoList" parameterType="map" resultType="SysToDoList">
+        <include refid="selectSysToDoListVo"/>
+        <where>
+            <if test="status != null  and status != ''">and status = #{status}</if>
+            <if test="roleList != null ">
+                and user_role_id in
+                <foreach collection="roleList" item="item" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <insert id="insertSysToDoList" parameterType="SysToDoList">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT seq_sys_to_do_list.NEXTVAL as id FROM DUAL
+        </selectKey>
+        insert into sys_to_do_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="title != null  and title != ''">title,</if>
+            <if test="type != null  and type != ''">type,</if>
+            <if test="status != null  and status != ''">status,</if>
+            <if test="contants != null  and contants != ''">contants,</if>
+            <if test="todoTime != null ">todo_time,</if>
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="userRoleId != null ">user_role_id,</if>
+            <if test="comid != null ">comid,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="title != null  and title != ''">#{title},</if>
+            <if test="type != null  and type != ''">#{type},</if>
+            <if test="status != null  and status != ''">#{status},</if>
+            <if test="contants != null  and contants != ''">#{contants},</if>
+            <if test="todoTime != null ">#{todoTime},</if>
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="userRoleId != null ">#{userRoleId},</if>
+            <if test="comid != null ">#{comid},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysToDoList" parameterType="SysToDoList">
+        update sys_to_do_list
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null ">title = #{title},</if>
+            <if test="type != null ">type = #{type},</if>
+            <if test="status != null ">status = #{status},</if>
+            <if test="contants != null ">contants = #{contants},</if>
+            <if test="todoTime != null ">todo_time = #{todoTime},</if>
+            <if test="createBy != null ">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateBy != null ">update_by = #{updateBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="userRoleId != null ">user_role_id = #{userRoleId},</if>
+            <if test="comid != null ">comid = #{comid},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysToDoListById" parameterType="Long">
+        delete from sys_to_do_list where id = #{id}
+    </delete>
+
+    <delete id="deleteSysToDoListByIds" parameterType="String">
+        delete from sys_to_do_list where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
